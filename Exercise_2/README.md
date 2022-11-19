@@ -207,5 +207,4 @@ spec:
   - Egress
 ```
 ---
-If you have any questions, please ask away: 
-- [Slack - K8s club](https://and-hubble.slack.com/archives/C02SBEHGCTH)
+If you have any questions, please ask away.
