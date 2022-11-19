@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: water
+  name: water
+  namespace: liquid
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: water
+  template:
+    metadata:
+      labels:
+        app: water
+    spec:
+      containers:
+      - image: nginx:latest
+        name: nginx
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "30m"
+            memory: "50Mi"
+          limits:
+            cpu: "100m"
+            memory: "150Mi"
+status: {}
