@@ -11,7 +11,8 @@ Key articles:
 * [DNS for Services and Pods](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/)
 * [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/)
 
-**Pre-requisits setup**
+---
+### Pre-requisits setup
 Install **minikube** and run the following: <br/>
 ```bash
 minikube start --network-plugin=cni
@@ -20,6 +21,7 @@ minikube start --network-plugin=cni
 Then, to setup calico on your minikube, follow the instructions **[here](https://projectcalico.docs.tigera.io/getting-started/kubernetes/minikube#create-a-single-node-minikube-cluster)**. <br/>
 The reason why we are using calico, is to challenge with kubernetes networks and network security on minikube. Which is also equivilently set up in any cloud provider Kubernetes services. (EKS, AKS and GKE).
 
+---
 **Exercise below:**
 1) Creating namespaces: 
     ```bash 
@@ -206,5 +208,21 @@ spec:
   policyTypes:
   - Egress
 ```
+---
+Now, lets make things little more than basic. 
+Let's thing we have the following: 
+* Namespace: fruits
+    * Deployment: apple
+        * Pods: 1
+    * Service: tree
+        * Type: ClusterIP
+* Namespace: liquid
+    * Pod: cherry
+    * Pod: banana
+    * Deployment: water
+        * Pods: 1
+    * Service: weather
+        * Type: ClusterIP
+
 ---
 If you have any questions, please ask away.
