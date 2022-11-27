@@ -1,0 +1,104 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: league
+spec: {}
+status: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: chelsea
+    sport: football
+  name: chelsea
+  namespace: league
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chelsea
+      sport: football
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: chelsea
+        sport: football
+    spec:
+      containers:
+      - image: k8simage:chelsea
+        name: k8simage
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Never
+        resources: {}
+status: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: liverpool
+    sport: football
+  name: liverpool
+  namespace: league
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: liverpool
+      sport: football
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: liverpool
+        sport: football
+    spec:
+      containers:
+      - image: k8simage:liverpool
+        name: k8simage
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    cluster-ip: teams
+  name: teams
+  namespace: league
+spec:
+  ports:
+  - name: clustered-app
+    port: 15000
+    protocol: TCP
+    targetPort: 80
+  selector:
+    sport: football
+  type: ClusterIP
+status:
+  loadBalancer: {}
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   labels:
+#     app: teams-port
+#   name: teams-port
+# spec:
+#   ports:
+#   - name: 80-1500
+#     nodePort: 1500
+#     port: 80
+#     protocol: TCP
+#     targetPort: 1500
+#   selector:
+#     cluster-ip: teams
+#   type: NodePort
+# status:
+#   loadBalancer: {}
+# ---

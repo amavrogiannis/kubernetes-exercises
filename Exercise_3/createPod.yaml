@@ -32,17 +32,11 @@ metadata:
   namespace: fruits
 spec:
   containers:
-  - image: nginx:latest
+  - image: k8simage:v0.1
+    imagePullPolicy: Never
     name: banana
+    resources: {}
     ports:
-    - containerPort: 80
-    resources:
-      requests:
-        cpu: "30m"
-        memory: "50Mi"
-      limits:
-        cpu: "100m"
-        memory: "150Mi"
-  dnsPolicy: ClusterFirst
-  restartPolicy: Always
+      - containerPort: 80
+  restartPolicy: Never
 status: {}

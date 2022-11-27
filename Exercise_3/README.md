@@ -125,4 +125,40 @@ Also, a successfull should look like the following:
   100   615  100   615    0     0  76875      0 --:--:-- --:--:-- --:--:-- 76875
 ```
 
-3) 
+3) Now, lets create a local image and run it on kubernetes (minikube). Example, we have created a html page (index.html) and a Dockerfile. 
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Hey hey v2</h1>
+<h2>this nginx is running on:</h2>
+
+<p id="demo"></p>
+
+<script>
+let hostname = location.hostname;
+document.getElementById("demo").innerHTML = hostname;
+</script>
+
+<h3 style="color:Blue;">London is Blue</h3>
+
+</body>
+</html>
+```
+```Dockerfile
+FROM nginx:alpine
+
+COPY ./index.html /usr/share/nginx/html
+
+EXPOSE 80
+```
+To build the image, you need to run the `docker build` command, below: 
+```command
+docker build . -t [image_name]:[tag/version]
+```
+To to use the image on your `minikube`, run the following command: 
+```command
+minikube image load [image_name]:[tag/version]
+```
+4) 
