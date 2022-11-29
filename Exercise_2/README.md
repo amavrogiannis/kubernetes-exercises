@@ -210,19 +210,28 @@ spec:
 ```
 ---
 Now, lets make things little more than basic. 
-Let's thing we have the following: 
+We have the following setup: 
 * Namespace: fruits
-    * Deployment: apple
-        * Pods: 1
     * Service: tree
         * Type: ClusterIP
-* Namespace: liquid
-    * Pod: cherry
-    * Pod: banana
-    * Deployment: water
-        * Pods: 1
-    * Service: weather
+    * Deployment: 
+        * apple
+        * cherry
+* Namespace: food
+    * Deployment: 
+        * beef
+        * pork
+    * Service: chicken
         * Type: ClusterIP
-
+* Namespace: default
+    * Pod:
+        * test-pod
 ---
+What we are trying to achieve? 
+netPolicy-allow-fruits.yaml:
+* Namespace **food** should allow traffic from **fruits** and deny **default**.
+netPolicy-deny-fruits.yaml:
+* Pod **cherry** in **fruits** should deny all ingress.
+---
+
 If you have any questions, please ask away.

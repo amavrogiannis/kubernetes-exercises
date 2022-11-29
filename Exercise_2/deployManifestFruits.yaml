@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: apple
+    department: farmers
+  name: apple
+  namespace: fruits
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apple
+      department: farmers
+  template:
+    metadata:
+      labels:
+        app: apple
+        department: farmers
+    spec:
+      containers:
+      - image: nginx:latest
+        name: nginx
+        ports:
+        - containerPort: 80
+        resources: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: cherry
+    department: farmers
+  name: cherry
+  namespace: fruits
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cherry
+      department: farmers
+  template:
+    metadata:
+      labels:
+        app: cherry
+        department: farmers
+    spec:
+      containers:
+      - image: nginx:latest
+        name: nginx
+        ports:
+        - containerPort: 80
+        resources: {}
