@@ -80,9 +80,11 @@ spec:
     - from:
       - ipBlock:
           cidr: [IP Address]/32 # Setting subnet to 32, will restrict to only single pod.
+      - namespaceSelector:
+          matchLabels: [namespace] # You are defining a namespace, which you will allowing pods talking in different namespaces.
       - podSelector:
           matchLabels:
-            app: [podLabel]
+            app: [podLabel] # You are defining the pod which is allowing to talk to the specific pod, and you may need to include namespace name if the pod is to a different namespace.
       ports:
         - protocol: # protocol: i.e. TCP or UDP
           port: [portNo.]
