@@ -1,0 +1,161 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: chelsea
+    sport: football
+  name: chelsea
+  namespace: league
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chelsea
+      sport: football
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: chelsea
+        sport: football
+    spec:
+      containers:
+      - image: k8simage:chelsea
+        name: k8simage
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Never
+        resources: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    sport: football
+  name: liverpool
+  namespace: league
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: liverpool
+      sport: football
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: liverpool
+        sport: football
+    spec:
+      containers:
+      - image: k8simage:liverpool
+        name: k8simage
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Never
+        resources: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: apple
+    store: supermarket
+  name: apple
+  namespace: fruits
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apple
+  template:
+    metadata:
+      labels:
+        app: apple
+        store: supermarket
+    spec:
+      containers:
+      - image: k8simage:apple
+        name: apple
+        ports:
+        - containerPort: 80
+        resources: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pears
+    store: supermarket
+  name: pears
+  namespace: fruits
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pears
+  template:
+    metadata:
+      labels:
+        app: pears
+        store: supermarket
+    spec:
+      containers:
+      - image: k8simage:pears
+        name: pears
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sprite
+    store: bar
+  name: sprite
+  namespace: liquid
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sprite
+  template:
+    metadata:
+      labels:
+        app: sprite
+        store: bar
+    spec:
+      containers:
+      - image: k8simage:sprite
+        name: sprite
+        ports:
+        - containerPort: 80
+        resources: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pepsi
+    store: bar
+  name: pepsi
+  namespace: liquid
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pepsi
+  template:
+    metadata:
+      labels:
+        app: pepsi
+        store: bar
+    spec:
+      containers:
+      - image: k8simage:pepsi
+        name: pepsi
+        ports:
+        - containerPort: 80
+        resources: {}
