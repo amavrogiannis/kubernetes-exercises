@@ -1,0 +1,104 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: football-ingress
+  namespace: league
+  labels:
+    service: application-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: example.local
+    http:
+      paths:
+      - path: /football
+        pathType: Prefix
+        backend:
+          service:
+            name: football 
+            port:
+              number: 8080
+  tls:
+    - hosts:
+      - example.local
+      secretName: example-local
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: supermarket-ingress
+  namespace: fruits
+  labels:
+    service: application-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: example.local
+    http:
+      paths:
+      - path: /fruits
+        pathType: Prefix
+        backend:
+          service:
+            name: fruiteria 
+            port:
+              number: 8080
+  tls:
+    - hosts:
+      - example.local
+      secretName: example-local
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bar-ingress
+  namespace: liquid
+  labels:
+    service: application-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: example.local
+    http:
+      paths:
+      - path: /drinks
+        pathType: Prefix
+        backend:
+          service:
+            name: bartender 
+            port:
+              number: 8080
+  tls:
+    - hosts:
+      - example.local
+      secretName: example-local
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dashboard-ingress
+  namespace: kubernetes-dashboard
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: kubernetes.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kubernetes-dashboard
+            port:
+              number: 80
+  tls:
+    - hosts:
+      - kubernetes.local
+      secretName: kubernetes.local

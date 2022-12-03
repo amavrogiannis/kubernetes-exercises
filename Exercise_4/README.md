@@ -68,11 +68,10 @@ To do so, we will deploy the following:
 - Install Ingress Controller: 
     - Run the manifest to install Ingress: `kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.5.1/deploy/static/provider/cloud/deploy.yaml` as documented in the [documentation](https://kubernetes.github.io/ingress-nginx/deploy/).
 - Create the following: 
-    - Run your application deployment with --port=80 and then create `NodePort` service on the same namespace, you deployed your app. 
+    - Run your application deployment with --port=80 and then create `ClusterIP` service on the same namespace, you deployed your app. 
     - Create your Ingress yaml file. `kubectl create ingress fruits-ingress -n league --rule host/path=football-svc:12500 --dry-run=client -o yaml > ingress.yaml`.
     - Modify the following values, which you will direct your application to a path. 
 ```yaml
-# ingress.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -99,4 +98,3 @@ spec:
 ```
 - references: 
     - annotations: https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/ 
-3) Run `kubectl apply -f ingress.yaml` *(Please, ensure you have minikube tunner enabled.)*. Then you should be able to check your browser in the URL: http://localhost/[path]

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: external-app-lb
+  name: external-app-lb
+spec:
+  ports:
+  - name: public-expose
+    port: 12500
+    targetPort: 80
+  selector:
+    service: application-ingress
+  type: LoadBalancer
