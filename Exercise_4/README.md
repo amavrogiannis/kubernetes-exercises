@@ -1,13 +1,21 @@
-## HW 3 - Kubernetes
+## HW 4 - Kubernetes
 ### Description: 
-Following the results from the previous exercise, we will start orchestrating Network Policies and nginx application a little more. We will try and achieve, described the following **Task Goals:** 
-* Build diffrent container Applications using `docker build`. 
-* Create K8s managed ingress controller.
-* Forward routes to /[xyz] to the deployment in the [xyz] namespace. ***Note: /xyz is route***
+1. Create a secret with keys
+  - example: 
+    - username: bob
+    - password: mypassword
+2. apply the secret as an environmental vairable to your pod
+3. expose the secrets username in the html
+4. Follow through the nginx controller demo on minikube
+5. Create an ingress to 2 of your service in different namespaces
+6. Update your localhost to example.com  and point to the IP of the ingress
+7. Create a self signed TLS cert with example.com as the CN
+8. Apply the TLS to the ingress controller
 
 
 Key articles: 
-* [Nginx Ingress Controller](https://docs.nginx.com/nginx-ingress-controller/intro/overview/)
+* [cert-manager](https://cert-manager.io/docs/)
+* [https ingress controller](https://www.civo.com/learn/kubernetes-https-ingress-controller-with-your-own-tls-certificate)
 
 ---
 ### Pre-requisits setup:

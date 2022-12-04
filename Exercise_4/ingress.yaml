@@ -10,7 +10,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: example.local
+  - host: example.com
     http:
       paths:
       - path: /football
@@ -20,10 +20,6 @@ spec:
             name: football 
             port:
               number: 8080
-  tls:
-    - hosts:
-      - example.local
-      secretName: example-local
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -37,7 +33,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: example.local
+  - host: example.com
     http:
       paths:
       - path: /fruits
@@ -47,10 +43,6 @@ spec:
             name: fruiteria 
             port:
               number: 8080
-  tls:
-    - hosts:
-      - example.local
-      secretName: example-local
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -64,7 +56,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: example.local
+  - host: example.com
     http:
       paths:
       - path: /drinks
@@ -74,31 +66,3 @@ spec:
             name: bartender 
             port:
               number: 8080
-  tls:
-    - hosts:
-      - example.local
-      secretName: example-local
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: dashboard-ingress
-  namespace: kubernetes-dashboard
-  annotations:
-    kubernetes.io/ingress.class: nginx
-spec:
-  rules:
-  - host: kubernetes.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: kubernetes-dashboard
-            port:
-              number: 80
-  tls:
-    - hosts:
-      - kubernetes.local
-      secretName: kubernetes.local
