@@ -52,29 +52,3 @@ spec:
         ports:
         - containerPort: 80
         resources: {}
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: pepsi
-    store: bar
-  name: pepsi
-  namespace: liquid
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: pepsi
-  template:
-    metadata:
-      labels:
-        app: pepsi
-        store: bar
-    spec:
-      containers:
-      - image: k8simage:pepsi
-        name: pepsi
-        ports:
-        - containerPort: 80
-        resources: {}

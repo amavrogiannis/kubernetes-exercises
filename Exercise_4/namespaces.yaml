@@ -7,8 +7,3 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: fruits
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: liquid

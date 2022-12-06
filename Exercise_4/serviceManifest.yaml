@@ -29,19 +29,3 @@ spec:
   selector:
     store: supermarket
   type: NodePort
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    store: bar
-  name: bartender
-  namespace: liquid
-spec:
-  ports:
-  - port: 8080
-    protocol: TCP
-    targetPort: 80
-  selector:
-    store: bar
-  type: NodePort
