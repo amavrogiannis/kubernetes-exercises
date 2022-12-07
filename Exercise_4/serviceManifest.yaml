@@ -9,7 +9,7 @@ spec:
   ports:
   - port: 8080
     protocol: TCP
-    targetPort: 80
+    targetPort: 5000
   selector:
     sport: football
   type: NodePort
@@ -25,7 +25,7 @@ spec:
   ports:
   - port: 8080
     protocol: TCP
-    targetPort: 80
+    targetPort: 5000
   selector:
     store: supermarket
   type: NodePort

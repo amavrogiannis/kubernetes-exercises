@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  TV_ENV: '"FIFA-world-cup"'
+kind: ConfigMap
+metadata:
+  name: football-env
+  namespace: league

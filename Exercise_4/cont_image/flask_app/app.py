@@ -1,8 +1,6 @@
 from flask import Flask, render_template
 import os
 
-os.getenv("TV_ENV")
-
 app = Flask(__name__)
 
 

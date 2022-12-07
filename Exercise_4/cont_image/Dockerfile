@@ -1,7 +1,7 @@
 FROM python:3.8-slim-buster
 
 ENV FLASK_APP=app
-ENV TV_ENV=the_boys
+# ENV TV_ENV=the_boys
 
 COPY /flask_app/requirements.txt /app/requirements.txt
 

@@ -20,10 +20,16 @@ spec:
         sport: football
     spec:
       containers:
-      - image: k8simage:chelsea
-        name: k8simage
+      - image: flask_app:v2
+        name: flash-1
         ports:
-        - containerPort: 80
+        - containerPort: 5000
+        env:
+          - name: TV_ENV
+            valueFrom:
+              configMapKeyRef:
+                name: football-env
+                key: TV_ENV
         imagePullPolicy: Never
         resources: {}
 ---
@@ -47,8 +53,21 @@ spec:
         store: supermarket
     spec:
       containers:
-      - image: k8simage:apple
-        name: apple
+      - image: flask_app:v2
+        name: flask
         ports:
-        - containerPort: 80
+        - containerPort: 5000
         resources: {}
+        env:
+          - name: TV_ENV
+            valueFrom:
+              secretKeyRef:
+                name: fake-secret
+                key: TV_ENV
+      volumes:
+        - name: secret-env
+          secret:
+            secretName: fake-secret
+        # env:
+        # - name: TV_ENV
+        #   value: "suits"
