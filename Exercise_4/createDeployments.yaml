@@ -20,7 +20,7 @@ spec:
         sport: football
     spec:
       containers:
-      - image: flask_app:v2
+      - image: flask_app:v1
         name: flash-1
         ports:
         - containerPort: 5000
@@ -53,7 +53,7 @@ spec:
         store: supermarket
     spec:
       containers:
-      - image: flask_app:v2
+      - image: flask_app:v1
         name: flask
         ports:
         - containerPort: 5000
