@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: chelsea
+    sport: football
+  name: chelsea
+  namespace: league
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chelsea
+      sport: football
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: chelsea
+        sport: football
+    spec:
+      containers:
+      - image: flask_app:v1
+        name: flash-1
+        ports:
+        - containerPort: 5000
+        env:
+          - name: TV_ENV
+            valueFrom:
+              configMapKeyRef:
+                name: football-env
+                key: TV_ENV
+        imagePullPolicy: Never
+        resources: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: apple
+    store: supermarket
+  name: apple
+  namespace: fruits
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apple
+  template:
+    metadata:
+      labels:
+        app: apple
+        store: supermarket
+    spec:
+      containers:
+      - image: flask_app:v1
+        name: flask
+        ports:
+        - containerPort: 5000
+        resources: {}
+        env:
+          - name: TV_ENV
+            valueFrom:
+              secretKeyRef:
+                name: fake-secret
+                key: TV_ENV
+      volumes:
+        - name: secret-env
+          secret:
+            secretName: fake-secret
+        # env:
+        # - name: TV_ENV
+        #   value: "suits"

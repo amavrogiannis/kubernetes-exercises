@@ -1,0 +1,45 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: football-ingress
+  namespace: league
+  labels:
+    service: application-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: localhost
+    http:
+      paths:
+      - path: /football
+        pathType: Prefix
+        backend:
+          service:
+            name: football 
+            port:
+              number: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: supermarket-ingress
+  namespace: fruits
+  labels:
+    service: application-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: localhost
+    http:
+      paths:
+      - path: /fruits
+        pathType: Prefix
+        backend:
+          service:
+            name: fruiteria 
+            port:
+              number: 8080

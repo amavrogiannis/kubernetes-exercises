@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: chelsea
+    sport: football
+  name: chelsea
+  namespace: league
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chelsea
+      sport: football
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: chelsea
+        sport: football
+    spec:
+      containers:
+      - image: k8simage:chelsea
+        name: k8simage
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Never
+        resources: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: apple
+    store: supermarket
+  name: apple
+  namespace: fruits
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apple
+  template:
+    metadata:
+      labels:
+        app: apple
+        store: supermarket
+    spec:
+      containers:
+      - image: k8simage:apple
+        name: apple
+        ports:
+        - containerPort: 80
+        resources: {}

@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pork
+    department: butcher
+  name: pork
+  namespace: food
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pork
+      department: butcher
+  template:
+    metadata:
+      labels:
+        app: pork
+        department: butcher
+    spec:
+      containers:
+      - image: nginx:latest
+        name: nginx
+        ports:
+        - containerPort: 80
+        resources: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: beef
+    department: butcher
+  name: beef
+  namespace: food
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: beef
+      department: butcher
+  template:
+    metadata:
+      labels:
+        app: beef
+        department: butcher
+    spec:
+      containers:
+      - image: nginx:latest
+        name: nginx
+        ports:
+        - containerPort: 80
+        resources: {}
