@@ -6,3 +6,6 @@
 **/cert/*
 !**/cert/README.md
 flask_auth_app/
+logs.txt
+**/.DS_Store
+.DS_Store
