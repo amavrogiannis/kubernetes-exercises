@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  creationTimestamp: null
+  name: test-cron
+spec:
+  jobTemplate:
+    metadata:
+      creationTimestamp: null
+      name: test-cron
+    spec:
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          containers:
+          - image: busybox:1.23
+            name: test-cron
+            command: ['sh','-c','date; echo "Hello from Alex M"']
+            imagePullPolicy: IfNotPresent
+            resources: {}
+          restartPolicy: OnFailure
+      parallelism: 2
+      completions: 6
+  schedule: '* * * * *'
+status: {}

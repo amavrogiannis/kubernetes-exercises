@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: pod-read
+  name: pod-read
+spec:
+  volumes:
+  - name: tmp-vol
+    hostPath: 
+      path: /tmp
+  containers:
+  - image: busybox:1.28
+    name: busybox
+    command: ['sh','-c','touch /tmp/logs/message.log; echo "LogMeHere" > /tmp/logs/message.log; sleep 60']
+    volumeMounts:
+    - name: tmp-vol
+      mountPath: /tmp/logs/
+    readinessProbe:
+      exec:
+        command:
+          - sh
+          - -c
+          - cat /tmp/logs/message.log
+      initialDelaySeconds: 2
+      periodSeconds: 4
+    resources: {}
+  restartPolicy: OnFailure
+status: {}

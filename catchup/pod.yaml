@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: pod-name
+  name: pod-name
+  namespace: default
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: env
+            operator: In
+            values:
+            - main
+  containers:
+  - image: busybox:1.28
+    name: pod-name
+    command: ['sh', '-c', 'echo "Hello Pod1"; sleep 60']
+    resources:
+      requests:
+        cpu: 100m
+        memory: 10Mi
+      limits:
+        cpu: 100m
+        memory: 10Mi
+  dnsPolicy: ClusterFirst
+  restartPolicy: OnFailure
+status: {}
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: node-pod
+  name: node-pod
+  namespace: default
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: env
+            operator: In
+            values:
+            - test
+  containers:
+  - image: busybox:1.28
+    name: node-pod
+    command: ['sh', '-c', 'echo "Hello Node1"; sleep 60']
+    resources: {}
+  - image: nginx:1.14.2
+    name: nginx
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: OnFailure
+status: {}
+
